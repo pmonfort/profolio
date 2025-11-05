@@ -1,0 +1,70 @@
+<% content_for :title, "Home" %>
+
+<div class="w-full">
+  <div class="text-center mb-16">
+    <h1 class="text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-4">
+      Software Developer
+    </h1>
+    <p class="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+      Building modern web applications and sharing knowledge through code
+    </p>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-8 mb-16">
+    <%= link_to profile_path, class: "group block p-8 bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1" do %>
+      <h2 class="text-2xl font-semibold text-slate-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+        Portfolio
+      </h2>
+      <p class="text-slate-600 dark:text-slate-400">
+        Learn about my experience, skills, and projects
+      </p>
+    <% end %>
+
+    <%= link_to blog_path, class: "group block p-8 bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1" do %>
+      <h2 class="text-2xl font-semibold text-slate-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+        Blog
+      </h2>
+      <p class="text-slate-600 dark:text-slate-400">
+        Articles and tutorials about web development
+      </p>
+    <% end %>
+  </div>
+
+  <div class="mt-16">
+    <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-8">Latest Posts</h2>
+    <% latest_posts = Post.published.limit(3) %>
+    <% if latest_posts.any? %>
+      <div class="space-y-6">
+        <% latest_posts.each do |post| %>
+          <%= link_to blog_post_path(post.slug), class: "block group" do %>
+            <article class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-xs font-semibold uppercase">
+                  <%= post.category %>
+                </span>
+                <% if post.published_at %>
+                  <time class="text-sm text-slate-500 dark:text-slate-400">
+                    <%= post.published_at.strftime("%B %d, %Y") %>
+                  </time>
+                <% end %>
+              </div>
+              <h3 class="text-2xl font-semibold text-slate-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                <%= post.title %>
+              </h3>
+              <% if post.excerpt.present? %>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                  <%= truncate(post.excerpt, length: 150) %>
+                </p>
+              <% end %>
+            </article>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="mt-8 text-center">
+        <%= link_to "View All Posts →", blog_path, class: "text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors" %>
+      </div>
+    <% else %>
+      <p class="text-slate-500 dark:text-slate-400 text-center py-8">No posts published yet.</p>
+    <% end %>
+  </div>
+</div>

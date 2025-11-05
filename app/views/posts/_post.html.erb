@@ -1,0 +1,19 @@
+<div id="<%= dom_id post %>" class="w-full space-y-2">
+  <h3 class="text-xl font-semibold text-slate-900 dark:text-white"><%= post.title %></h3>
+  <div class="flex items-center gap-2 flex-wrap">
+    <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-xs font-semibold uppercase">
+      <%= post.category %>
+    </span>
+    <span class="px-2 py-1 <%= post.published? ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300' : 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300' %> rounded-full text-xs font-semibold">
+      <%= post.published? ? "Published" : "Draft" %>
+    </span>
+    <% if post.published_at %>
+      <time class="text-sm text-slate-500 dark:text-slate-400">
+        <%= post.published_at.strftime("%B %d, %Y") %>
+      </time>
+    <% end %>
+  </div>
+  <% if post.excerpt.present? %>
+    <p class="text-slate-600 dark:text-slate-400"><%= truncate(post.excerpt, length: 150) %></p>
+  <% end %>
+</div>

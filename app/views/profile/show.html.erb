@@ -1,0 +1,52 @@
+<% content_for :title, "Profile" %>
+
+<div class="w-full max-w-4xl mx-auto">
+  <h1 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-8">Profile</h1>
+
+  <% if user_signed_in? %>
+    <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-8">
+      <div class="mb-8">
+        <h2 class="text-2xl font-semibold text-slate-900 dark:text-white mb-4">Account Information</h2>
+        <div class="mb-4">
+          <strong class="block font-medium mb-1 text-slate-900 dark:text-white">Email:</strong>
+          <p class="text-slate-600 dark:text-slate-400"><%= current_user.email %></p>
+        </div>
+      </div>
+      
+      <div class="mt-8 pt-8 border-t border-slate-200 dark:border-slate-700">
+        <h2 class="text-2xl font-semibold text-slate-900 dark:text-white mb-6">Your Posts</h2>
+        <% user_posts = Post.where(user: current_user).order(created_at: :desc) %>
+        <% if user_posts.any? %>
+          <div class="space-y-4">
+            <% user_posts.each do |post| %>
+              <div class="flex justify-between items-center py-4 px-4 bg-slate-50 dark:bg-slate-900 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                <div class="flex-1">
+                  <%= link_to post.title, post, class: "text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors" %>
+                  <div class="flex items-center gap-2 mt-1">
+                    <span class="text-xs px-2 py-1 rounded <%= post.published? ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300' : 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300' %>">
+                      <%= post.published? ? "Published" : "Draft" %>
+                    </span>
+                    <% if post.published_at %>
+                      <span class="text-xs text-slate-500 dark:text-slate-400">
+                        <%= post.published_at.strftime("%b %d, %Y") %>
+                      </span>
+                    <% end %>
+                  </div>
+                </div>
+                <%= link_to "Edit", edit_post_path(post), class: "text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors" %>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <p class="text-slate-500 dark:text-slate-400 mb-4">You haven't created any posts yet.</p>
+          <%= link_to "Create your first post", new_post_path, class: "inline-block rounded-md px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-medium transition-colors" %>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-8 text-center">
+      <p class="text-slate-500 dark:text-slate-400 mb-4">Please sign in to view your profile.</p>
+      <%= link_to "Sign In", new_user_session_path, class: "inline-block rounded-md px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-medium transition-colors" %>
+    </div>
+  <% end %>
+</div>
