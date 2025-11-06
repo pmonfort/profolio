@@ -438,3 +438,375 @@ trix-editor .attachment__metadata {
   padding: 0 !important;
   max-width: 100% !important;
 }
+
+/* === Custom portfolio theme overrides === */
+
+.trix-content {
+  color: #1f2937; /* neutral-800 */
+  background-color: transparent;
+}
+
+.trix-content p + p {
+  margin-top: 1.25em;
+}
+
+.trix-content h2,
+.trix-content h3,
+.trix-content h4,
+.trix-content h5,
+.trix-content h6 {
+  color: #111827;
+  margin-top: 1.8em;
+  margin-bottom: 0.7em;
+  line-height: 1.25;
+}
+
+.trix-content a {
+  color: #5b21b6;
+  text-decoration: underline;
+  text-decoration-color: rgba(139, 92, 246, 0.45);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+.trix-content a:hover {
+  color: #4c1d95;
+  text-decoration-color: rgba(109, 40, 217, 0.75);
+}
+
+.trix-content code {
+  color: #be185d;
+  background-color: rgba(244, 114, 182, 0.16);
+  padding: 0.15em 0.45em;
+  border-radius: 0.5em;
+  font-size: 0.95em;
+}
+
+.trix-content pre {
+  color: #111827;
+  border-radius: 1rem;
+  border: 1px solid rgba(17, 24, 39, 0.12);
+  background-color: #f3f4f6;
+  padding: 1.25em;
+}
+
+.trix-content pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+  font-size: 0.95em;
+}
+
+.trix-content blockquote {
+  color: #374151;
+  border-left-color: rgba(79, 70, 229, 0.35);
+  padding-left: 1rem;
+  font-style: italic;
+}
+
+.trix-content ul,
+.trix-content ol {
+  margin-left: 1.25rem;
+  color: inherit;
+}
+
+.trix-content strong {
+  color: #111827;
+}
+
+.dark .trix-content {
+  color: #e5e7eb;
+}
+
+.dark .trix-content h2,
+.dark .trix-content h3,
+.dark .trix-content h4,
+.dark .trix-content h5,
+.dark .trix-content h6 {
+  color: #f3f4f6;
+}
+
+.dark .trix-content a {
+  color: #c4b5fd;
+  text-decoration-color: rgba(196, 181, 253, 0.45);
+}
+
+.dark .trix-content a:hover {
+  color: #ddd6fe;
+  text-decoration-color: rgba(221, 214, 254, 0.75);
+}
+
+.dark .trix-content code {
+  color: #fbcfe8;
+  background-color: rgba(192, 132, 252, 0.2);
+}
+
+.dark .trix-content pre {
+  color: #f3f4f6;
+  background-color: #111827;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.dark .trix-content blockquote {
+  color: #d1d5db;
+  border-left-color: rgba(167, 139, 250, 0.5);
+}
+
+.dark .trix-content strong {
+  color: #f9fafb;
+}
+
+trix-toolbar {
+  background-color: transparent;
+  padding: 0.5rem 0;
+}
+
+trix-toolbar .trix-button-row {
+  gap: 1rem;
+}
+
+trix-toolbar .trix-button-group {
+  border-radius: 0.75rem;
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  background-color: rgba(249, 250, 251, 0.92);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  overflow: hidden;
+}
+
+trix-toolbar .trix-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #374151;
+  height: 2.4em;
+  border-bottom: none;
+  background-color: transparent;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+trix-toolbar .trix-button:not(:first-child) {
+  border-left: 1px solid rgba(17, 24, 39, 0.08);
+}
+
+trix-toolbar .trix-button:not(:disabled):hover {
+  background-color: rgba(129, 140, 248, 0.16);
+  color: #4c1d95;
+}
+
+trix-toolbar .trix-button.trix-active {
+  background-color: rgba(129, 140, 248, 0.24);
+  color: #4338ca;
+}
+
+.dark trix-toolbar .trix-button-group {
+  border-color: rgba(255, 255, 255, 0.08);
+  background-color: rgba(17, 24, 39, 0.9);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.dark trix-toolbar .trix-button:not(:first-child) {
+  border-left-color: rgba(255, 255, 255, 0.06);
+}
+
+.dark trix-toolbar .trix-button {
+  color: #e5e7eb;
+}
+
+.dark trix-toolbar .trix-button:not(:disabled):hover {
+  background-color: rgba(139, 92, 246, 0.22);
+  color: #ede9fe;
+}
+
+.dark trix-toolbar .trix-button.trix-active {
+  background-color: rgba(139, 92, 246, 0.35);
+  color: #ede9fe;
+}
+
+.dark trix-toolbar .trix-button--icon::before {
+  filter: invert(1);
+  opacity: 0.85;
+}
+
+trix-toolbar .trix-button--icon::before {
+  opacity: 0.7;
+}
+
+trix-toolbar .trix-button--icon.trix-active::before {
+  opacity: 1;
+}
+
+trix-toolbar .trix-button:disabled {
+  color: rgba(156, 163, 175, 0.65);
+}
+
+.dark trix-toolbar .trix-button:disabled {
+  color: rgba(156, 163, 175, 0.4);
+}
+
+trix-toolbar .trix-button--dialog {
+  color: #4338ca;
+}
+
+.dark trix-toolbar .trix-button--dialog {
+  color: #c4b5fd;
+}
+
+.rich-text-content {
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+
+
+.rich-text-content .trix-content {
+  color: var(--rich-text-body, #1f2937);
+  line-height: inherit;
+  background-color: transparent;
+}
+
+.rich-text-content .trix-content > * + * {
+  margin-top: 1.25em;
+}
+
+.rich-text-content .trix-content h2,
+.rich-text-content .trix-content h3,
+.rich-text-content .trix-content h4,
+.rich-text-content .trix-content h5,
+.rich-text-content .trix-content h6 {
+  color: var(--rich-text-heading, #111827);
+  font-weight: 700;
+  line-height: 1.25;
+  margin-top: 2.2em;
+  margin-bottom: 0.8em;
+}
+
+.rich-text-content .trix-content h2 { font-size: 1.8rem; }
+.rich-text-content .trix-content h3 { font-size: 1.5rem; }
+.rich-text-content .trix-content h4 { font-size: 1.3rem; }
+
+
+.rich-text-content .trix-content p {
+  color: inherit;
+}
+
+.rich-text-content .trix-content a {
+  color: var(--rich-text-link, #5b21b6);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+}
+
+.rich-text-content .trix-content a:hover {
+  color: #4c1d95;
+  text-decoration-color: rgba(109, 40, 217, 0.75);
+}
+
+.rich-text-content .trix-content ul,
+.rich-text-content .trix-content ol {
+  margin-left: 1.5rem;
+  padding-left: 0.25rem;
+}
+
+.rich-text-content .trix-content li + li {
+  margin-top: 0.6em;
+}
+.rich-text-content .trix-content blockquote {
+  border-left: 4px solid rgba(79, 70, 229, 0.35);
+  color: var(--rich-text-quote, #374151);
+  padding-left: 1rem;
+  font-style: italic;
+}
+
+.rich-text-content .trix-content code {
+  color: var(--rich-text-code, #be185d);
+  background-color: var(--rich-text-code-bg, rgba(244, 114, 182, 0.16));
+  padding: 0.2em 0.45em;
+  border-radius: 0.45em;
+  font-size: 0.95em;
+}
+
+.rich-text-content .trix-content pre {
+  background-color: var(--rich-text-pre-bg, #f3f4f6);
+  color: var(--rich-text-pre, #111827);
+  padding: 1.25em;
+  border-radius: 1rem;
+  border: 1px solid rgba(17, 24, 39, 0.12);
+  overflow-x: auto;
+}
+
+.rich-text-content .trix-content pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  font-size: 0.95em;
+}
+
+.rich-text-content .trix-content table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+}
+
+.rich-text-content .trix-content th,
+.rich-text-content .trix-content td {
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  padding: 0.75em;
+  text-align: left;
+}
+
+.rich-text-content .trix-content th {
+  background-color: rgba(79, 70, 229, 0.08);
+  color: var(--rich-text-heading, #1f2937);
+  font-weight: 600;
+}
+
+.rich-text-content .trix-content img {
+  border-radius: 0.75rem;
+  margin: 1.5rem auto;
+}
+
+.rich-text-content .trix-content hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 2.5rem 0;
+}
+
+.rich-text-content .trix-content strong,
+.rich-text-content .trix-content b {
+  color: var(--rich-text-strong, currentColor);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rich-text-content {
+    --rich-text-body: #e5e7eb;
+    --rich-text-heading: #f3f4f6;
+    --rich-text-link: #c4b5fd;
+    --rich-text-quote: #d1d5db;
+    --rich-text-code: #fbcfe8;
+    --rich-text-code-bg: rgba(192, 132, 252, 0.18);
+    --rich-text-pre: #e5e7eb;
+    --rich-text-pre-bg: #111827;
+    --rich-text-strong: #f9fafb;
+  }
+
+  .rich-text-content .trix-content a:hover {
+    color: #e0e7ff;
+    text-decoration-color: rgba(221, 214, 254, 0.8);
+  }
+
+  .rich-text-content .trix-content blockquote {
+    border-left-color: rgba(167, 139, 250, 0.45);
+  }
+
+  .rich-text-content .trix-content th,
+  .rich-text-content .trix-content td {
+    border-color: rgba(148, 163, 184, 0.25);
+  }
+
+  .rich-text-content .trix-content th {
+    background-color: rgba(129, 140, 248, 0.18);
+  }
+
+  .rich-text-content .trix-content hr {
+    border-top-color: rgba(255, 255, 255, 0.1);
+  }
+}

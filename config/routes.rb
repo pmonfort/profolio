@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  
+  devise_scope :user do
+    get "admin", to: "devise/sessions#new", as: :admin_login
+  end
+
   # Public routes
   root "home#index"
   get "blog", to: "blog#index", as: :blog

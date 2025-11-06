@@ -21,30 +21,63 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <script>
+      (function() {
+        if (typeof window === "undefined") return;
+        const allowedThemes = ["classic", "dark"];
+        const legacyThemeMap = { midnight: "dark" };
+
+        try {
+          const storedTheme = window.localStorage.getItem("preferred-theme");
+          const resolvedTheme = legacyThemeMap[storedTheme] || storedTheme;
+
+          if (resolvedTheme && allowedThemes.includes(resolvedTheme)) {
+            document.documentElement.setAttribute("data-theme", resolvedTheme);
+            if (resolvedTheme !== storedTheme) {
+              window.localStorage.setItem("preferred-theme", resolvedTheme);
+            }
+          } else if (storedTheme) {
+            window.localStorage.removeItem("preferred-theme");
+          }
+        } catch (error) {
+          console.warn("Theme preference unavailable", error);
+        }
+      })();
+    </script>
   </head>
 
-  <body class="antialiased">
-    <div class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-      <nav class="border-b border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50">
+  <body class="antialiased theme-body">
+    <div class="min-h-screen site-background">
+      <nav class="site-nav sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex justify-between items-center h-16">
-            <%= link_to root_path, class: "text-xl font-bold text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors" do %>
-              Pablo Monfort
-            <% end %>
+            <div class="flex items-center space-x-4">
+              <div data-controller="theme" class="theme-toggle" data-theme-target="container">
+                <button type="button"
+                        class="theme-toggle-button"
+                        role="switch"
+                        aria-checked="false"
+                        data-action="theme#toggleClick keydown->theme#handleKeydown"
+                        data-theme-target="button">
+                  <span class="theme-toggle-track">
+                    <span class="theme-toggle-thumb"></span>
+                  </span>
+                  <span class="theme-toggle-label" data-theme-target="label">Classic</span>
+                </button>
+              </div>
+              <%= link_to root_path, class: "nav-brand transition-colors" do %>
+                Pablo Monfort
+              <% end %>
+            </div>
             <div class="flex items-center space-x-6 md:space-x-8">
-              <%= link_to "Home", root_path, class: "text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors #{'font-medium text-slate-900 dark:text-white' if request.path == root_path}" %>
-              <%= link_to "Blog", blog_path, class: "text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors #{'font-medium text-slate-900 dark:text-white' if request.path.start_with?('/blog')}" %>
+              <%= link_to "Home", root_path, class: "nav-link transition-colors font-medium#{' nav-link-active' if request.path == root_path}" %>
+              <%= link_to "Blog", blog_path, class: "nav-link transition-colors font-medium#{' nav-link-active' if request.path.start_with?('/blog')}" %>
               <% if user_signed_in? %>
-                <%= link_to "Posts", posts_path, class: "text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors #{'font-medium text-slate-900 dark:text-white' if request.path.start_with?('/posts') || request.path.start_with?('/admin')}" %>
-                <%= link_to "Profile", profile_path, class: "text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors #{'font-medium text-slate-900 dark:text-white' if request.path == profile_path}" %>
-                <div class="flex items-center space-x-4 pl-4 border-l border-slate-200 dark:border-slate-700">
-                  <span class="text-sm text-slate-600 dark:text-slate-400 hidden sm:inline"><%= current_user.email %></span>
-                  <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "text-sm text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors" %>
-                </div>
-              <% else %>
-                <div class="flex items-center space-x-4">
-                  <%= link_to "Sign In", new_user_session_path, class: "text-sm text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors" %>
-                  <%= link_to "Sign Up", new_user_registration_path, class: "text-sm rounded-md px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white transition-colors" %>
+                <%= link_to "Posts", posts_path, class: "nav-link transition-colors font-medium#{' nav-link-active' if request.path.start_with?('/posts') || request.path.start_with?('/admin')}" %>
+                <%= link_to "Profile", profile_path, class: "nav-link transition-colors font-medium#{' nav-link-active' if request.path == profile_path}" %>
+                <div class="flex items-center space-x-4 pl-4 border-divider">
+                  <span class="text-sm nav-muted hidden sm:inline"><%= current_user.email %></span>
+                  <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link transition-colors font-medium cursor-pointer" %>
                 </div>
               <% end %>
             </div>
@@ -52,13 +85,13 @@
         </div>
       </nav>
 
-      <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+      <main class="theme-content max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <%= yield %>
       </main>
 
-      <footer class="border-t border-slate-200 dark:border-slate-700 mt-16 py-8">
+      <footer class="site-footer mt-16 py-8">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center text-sm text-slate-600 dark:text-slate-400">
+          <div class="text-center text-sm nav-muted">
             <p>&copy; <%= Date.current.year %> Pablo Monfort. All rights reserved.</p>
           </div>
         </div>

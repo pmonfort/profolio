@@ -27,8 +27,8 @@ class Admin::PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to [:admin, @post], notice: "Post was successfully created." }
-        format.json { render :show, status: :created, location: [:admin, @post] }
+        format.html { redirect_to [ :admin, @post ], notice: "Post was successfully created." }
+        format.json { render :show, status: :created, location: [ :admin, @post ] }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }
@@ -40,8 +40,8 @@ class Admin::PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to [:admin, @post], notice: "Post was successfully updated.", status: :see_other }
-        format.json { render :show, status: :ok, location: [:admin, @post] }
+        format.html { redirect_to [ :admin, @post ], notice: "Post was successfully updated.", status: :see_other }
+        format.json { render :show, status: :ok, location: [ :admin, @post ] }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }

@@ -2,10 +2,10 @@
 
 <div class="w-full max-w-4xl mx-auto">
   <div class="mb-12">
-    <h1 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+    <h1 class="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-neutral-50 mb-4">
       Blog
     </h1>
-    <p class="text-xl text-slate-600 dark:text-slate-400">
+    <p class="text-xl text-neutral-700 dark:text-neutral-300">
       Articles and tutorials about web development
     </p>
   </div>
@@ -14,22 +14,22 @@
     <div class="space-y-8">
       <% @posts.each do |post| %>
         <%= link_to blog_post_path(post.slug), class: "block group" do %>
-          <article class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <article class="bg-white dark:bg-neutral-900 rounded-xl shadow-lg border border-neutral-200 dark:border-neutral-800 p-8 hover:shadow-xl hover:border-violet-300 dark:hover:border-violet-700 transition-all duration-300 hover:-translate-y-1">
             <div class="flex items-center gap-3 mb-3">
-              <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-xs font-semibold uppercase">
+              <span class="px-3 py-1 bg-violet-100 dark:bg-violet-900 text-violet-900 dark:text-violet-100 rounded-full text-xs font-semibold uppercase border border-violet-300 dark:border-violet-700">
                 <%= post.category %>
               </span>
               <% if post.published_at %>
-                <time class="text-sm text-slate-500 dark:text-slate-400">
+                <time class="text-sm text-neutral-600 dark:text-neutral-400">
                   <%= post.published_at.strftime("%B %d, %Y") %>
                 </time>
               <% end %>
             </div>
-            <h2 class="text-2xl font-semibold text-slate-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+            <h2 class="text-2xl font-semibold text-neutral-900 dark:text-neutral-50 mb-3 group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
               <%= post.title %>
             </h2>
             <% if post.excerpt.present? %>
-              <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+              <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed">
                 <%= post.excerpt %>
               </p>
             <% end %>
@@ -38,6 +38,6 @@
       <% end %>
     </div>
   <% else %>
-    <p class="text-center my-10 text-slate-500 dark:text-slate-400">No posts published yet. Check back soon!</p>
+    <p class="text-center my-10 text-neutral-700 dark:text-neutral-300">No posts published yet. Check back soon!</p>
   <% end %>
 </div>

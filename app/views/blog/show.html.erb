@@ -1,33 +1,33 @@
 <% content_for :title, @post.title %>
 
 <div class="w-full max-w-4xl mx-auto">
-  <%= link_to blog_path, class: "inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 mb-8 transition-colors" do %>
+  <%= link_to blog_path, class: "inline-flex items-center text-violet-600 dark:text-violet-400 hover:text-violet-800 dark:hover:text-violet-300 mb-8 transition-colors font-medium" do %>
     ← Back to Blog
   <% end %>
 
-  <article class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 md:p-12">
+  <article class="bg-white dark:bg-neutral-900 rounded-2xl shadow-xl border border-neutral-200 dark:border-neutral-800 p-8 md:p-12">
     <div class="mb-8">
       <div class="flex items-center gap-3 mb-4">
-        <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-xs font-semibold uppercase">
+        <span class="px-3 py-1 bg-violet-100 dark:bg-violet-900 text-violet-900 dark:text-violet-100 rounded-full text-xs font-semibold uppercase border border-violet-300 dark:border-violet-700">
           <%= @post.category %>
         </span>
         <% if @post.published_at %>
-          <time class="text-sm text-slate-500 dark:text-slate-400">
+          <time class="text-sm text-neutral-600 dark:text-neutral-400">
             <%= @post.published_at.strftime("%B %d, %Y") %>
           </time>
         <% end %>
       </div>
-      <h1 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+      <h1 class="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-neutral-50 mb-4">
         <%= @post.title %>
       </h1>
       <% if @post.excerpt.present? %>
-        <p class="text-xl text-slate-600 dark:text-slate-400 italic">
+        <p class="text-xl text-neutral-700 dark:text-neutral-300 italic">
           <%= @post.excerpt %>
         </p>
       <% end %>
     </div>
 
-    <div class="prose prose-lg dark:prose-invert max-w-none prose-headings:text-slate-900 dark:prose-headings:text-white prose-p:text-slate-700 dark:prose-p:text-slate-300 prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-code:text-pink-600 dark:prose-code:text-pink-400 prose-strong:text-slate-900 dark:prose-strong:text-white prose-pre:bg-slate-900 dark:prose-pre:bg-slate-800">
+    <div class="rich-text-content text-lg leading-relaxed">
       <%= @post.content %>
     </div>
   </article>

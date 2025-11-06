@@ -1,19 +1,19 @@
 <div id="<%= dom_id post %>" class="w-full space-y-2">
-  <h3 class="text-xl font-semibold text-slate-900 dark:text-white"><%= post.title %></h3>
+  <h3 class="text-xl font-semibold text-neutral-900 dark:text-neutral-50"><%= post.title %></h3>
   <div class="flex items-center gap-2 flex-wrap">
-    <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-xs font-semibold uppercase">
+    <span class="px-2 py-1 bg-violet-100 dark:bg-violet-900 text-violet-900 dark:text-violet-100 rounded-full text-xs font-semibold uppercase border border-violet-300 dark:border-violet-700">
       <%= post.category %>
     </span>
-    <span class="px-2 py-1 <%= post.published? ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300' : 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300' %> rounded-full text-xs font-semibold">
+    <span class="px-2 py-1 <%= post.published? ? 'bg-green-100 dark:bg-green-900 text-green-900 dark:text-green-100 border border-green-300 dark:border-green-700' : 'bg-yellow-100 dark:bg-yellow-900 text-yellow-900 dark:text-yellow-100 border border-yellow-300 dark:border-yellow-700' %> rounded-full text-xs font-semibold">
       <%= post.published? ? "Published" : "Draft" %>
     </span>
     <% if post.published_at %>
-      <time class="text-sm text-slate-500 dark:text-slate-400">
+      <time class="text-sm text-neutral-600 dark:text-neutral-400">
         <%= post.published_at.strftime("%B %d, %Y") %>
       </time>
     <% end %>
   </div>
   <% if post.excerpt.present? %>
-    <p class="text-slate-600 dark:text-slate-400"><%= truncate(post.excerpt, length: 150) %></p>
+    <p class="text-neutral-700 dark:text-neutral-300"><%= truncate(post.excerpt, length: 150) %></p>
   <% end %>
 </div>
