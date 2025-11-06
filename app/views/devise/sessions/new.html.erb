@@ -1,0 +1,56 @@
+<% content_for :title, "Sign In" %>
+
+<div class="flex min-h-[70vh] items-center justify-center px-4 sm:px-6 lg:px-8">
+  <div class="w-full max-w-md space-y-8">
+    <div class="text-center space-y-3">
+      <h1 class="text-3xl font-bold text-neutral-900 dark:text-neutral-50">Welcome back</h1>
+      <p class="text-neutral-600 dark:text-neutral-300">Sign in to continue managing your content.</p>
+    </div>
+
+    <% if resource.errors.any? %>
+      <div class="rounded-xl border border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-900/30 p-4 text-sm text-red-700 dark:text-red-200 space-y-1">
+        <% resource.errors.full_messages.each do |message| %>
+          <p><%= message %></p>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-8 shadow-xl">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-6" }) do |f| %>
+        <div>
+          <%= f.label :email, class: "block text-sm font-medium text-neutral-900 dark:text-neutral-50 mb-2" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block w-full rounded-md border px-3 py-2 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-50 border-neutral-300 dark:border-neutral-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-violet-500" %>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <%= f.label :password, class: "text-sm font-medium text-neutral-900 dark:text-neutral-50" %>
+            <%= link_to "Forgot password?", new_password_path(resource_name), class: "text-sm text-violet-600 dark:text-violet-400 hover:text-violet-800 dark:hover:text-violet-300 transition-colors" %>
+          </div>
+          <%= f.password_field :password, autocomplete: "current-password", class: "block w-full rounded-md border px-3 py-2 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-50 border-neutral-300 dark:border-neutral-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-violet-500" %>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="flex items-center justify-between">
+            <label class="inline-flex items-center text-sm text-neutral-700 dark:text-neutral-300">
+              <%= f.check_box :remember_me, class: "mr-2 rounded border-neutral-300 dark:border-neutral-700 text-violet-600 focus:ring-violet-500" %>
+              Remember me
+            </label>
+          </div>
+        <% end %>
+
+        <div>
+          <%= f.submit "Sign In", class: "w-full rounded-md bg-violet-600 hover:bg-violet-700 dark:bg-violet-600 dark:hover:bg-violet-500 px-4 py-2 text-white font-medium transition-colors shadow-lg hover:shadow-xl" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="text-center text-sm text-neutral-600 dark:text-neutral-300 space-y-1">
+      <p>
+        <span>Need an account?</span>
+        <%= link_to "Sign up", new_registration_path(resource_name), class: "font-medium text-violet-600 dark:text-violet-400 hover:text-violet-800 dark:hover:text-violet-300 transition-colors" %>
+      </p>
+    </div>
+  </div>
+</div>
+

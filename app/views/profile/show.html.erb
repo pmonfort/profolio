@@ -1,52 +1,166 @@
 <% content_for :title, "Profile" %>
 
 <div class="w-full max-w-4xl mx-auto">
-  <h1 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-8">Profile</h1>
+  <h1 class="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-neutral-50 mb-8">Profile</h1>
 
-  <% if user_signed_in? %>
-    <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-8">
-      <div class="mb-8">
-        <h2 class="text-2xl font-semibold text-slate-900 dark:text-white mb-4">Account Information</h2>
-        <div class="mb-4">
-          <strong class="block font-medium mb-1 text-slate-900 dark:text-white">Email:</strong>
-          <p class="text-slate-600 dark:text-slate-400"><%= current_user.email %></p>
+
+  <div class="bg-white dark:bg-neutral-900 rounded-xl shadow-lg border border-neutral-200 dark:border-neutral-800 p-8 space-y-12">
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold text-neutral-900 dark:text-neutral-50">Account Information</h2>
+      <div>
+        <strong class="block font-medium mb-1 text-neutral-900 dark:text-neutral-50">Email</strong>
+        <p class="text-neutral-700 dark:text-neutral-300" onclick="copyToClipboard('pmonfort@gmail.com')">pmonfort@gmail.com</p>
+        <script>
+          function copyToClipboard(text) {
+            navigator.clipboard.writeText(text);
+            alert('Email copied to clipboard');
+          }
+        </script>
+      </div>
+      <div>
+        <strong class="block font-medium mb-1 text-neutral-900 dark:text-neutral-50">LinkedIn</strong>
+        <%= link_to "linkedin.com/in/pmonfort", "https://www.linkedin.com/in/pmonfort", target: "_blank", rel: "noopener", class: "inline-flex items-center gap-2 text-violet-600 dark:text-violet-400 hover:text-violet-800 dark:hover:text-violet-300 transition-colors" %>
+      </div>
+      <div>
+        <strong class="block font-medium mb-1 text-neutral-900 dark:text-neutral-50">Résumé</strong>
+        <%= link_to "Download PDF", "/PabloMonfortResume.pdf", download: "PabloMonfortResume.pdf", class: "inline-flex items-center gap-2 text-violet-600 dark:text-violet-400 hover:text-violet-800 dark:hover:text-violet-300 transition-colors" %>
+      </div>
+    </section>
+
+    <section class="space-y-8">
+      <div class="space-y-3">
+        <h2 class="text-2xl font-semibold text-neutral-900 dark:text-neutral-50">Professional Summary</h2>
+        <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed">
+          Senior Software Engineer with 15+ years of experience leading technical architecture and engineering teams. Specialized in
+          Ruby on Rails with additional expertise in Python and modern JavaScript frameworks including React and Angular. Proven track
+          record of leading cross-team initiatives, mentoring engineers, and driving technical excellence across large-scale systems.
+          Expert in fault-tolerant architectures, clean code practices, and test-driven development.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-semibold text-neutral-900 dark:text-neutral-50 mb-3">Key Architectural Achievements</h3>
+        <ul class="list-disc pl-5 space-y-3 text-neutral-700 dark:text-neutral-300">
+          <li>Rescued failing distributed system architecture for Trimble by redesigning the testing strategy across four global teams, reaching 100% build success within three months and boosting team velocity by 40%.
+          </li>
+          <li>Led the migration from a legacy AngularJS frontend to a component-based React architecture, reducing technical debt and improving developer velocity by 25%.</li>
+          <li>Founded Qaplus, architecting a full-stack SaaS platform from concept to MVP in six months and translating complex business requirements into scalable technical solutions.</li>
+        </ul>
+      </div>
+
+      <div class="space-y-6">
+        <h3 class="text-xl font-semibold text-neutral-900 dark:text-neutral-50">Experience</h3>
+
+        <div class="space-y-3 border border-neutral-200 dark:border-neutral-800 rounded-lg p-4 bg-neutral-50 dark:bg-neutral-800/60">
+          <div class="flex flex-wrap justify-between gap-2">
+            <p class="font-semibold text-neutral-900 dark:text-neutral-50">Senior Software Engineer · InMoment</p>
+            <p class="text-sm text-neutral-600 dark:text-neutral-400">05/2021 – 08/2025 · Remote</p>
+          </div>
+          <ul class="list-disc pl-5 space-y-2 text-neutral-700 dark:text-neutral-300">
+            <li>Led cross-team architectural decisions for a seven-microservice platform handling over one million requests per month.</li>
+            <li>Implemented Redis-backed caching strategies and pioneered AI-assisted development workflows with Claude Code and GitHub Copilot, improving code quality and delivery speed by 30%.</li>
+            <li>Migrated a legacy Salesforce integration from a Python monolith to a Ruby microservice, achieving 70% faster sync times and 99% reliability.</li>
+            <li>Directed the transition from AngularJS to React, reducing technical debt and improving developer velocity by 25%.</li>
+            <li>Mentored three developers on Ruby best practices and TDD while formalizing automated testing and code review processes that cut production incidents by 90%.</li>
+          </ul>
+        </div>
+
+        <div class="space-y-3 border border-neutral-200 dark:border-neutral-800 rounded-lg p-4 bg-neutral-50 dark:bg-neutral-800/60">
+          <div class="flex flex-wrap justify-between gap-2">
+            <p class="font-semibold text-neutral-900 dark:text-neutral-50">Senior Software Engineer · Tarmac</p>
+            <p class="text-sm text-neutral-600 dark:text-neutral-400">07/2013 – 12/2020 · Montevideo & Remote</p>
+          </div>
+          <ul class="list-disc pl-5 space-y-2 text-neutral-700 dark:text-neutral-300">
+            <li>Rescued a failing CI/CD pipeline for Trimble (Fortune 500), fixing 250+ failing tests and establishing distributed testing standards to deliver 100% green builds in three months.</li>
+            <li>Debugged and resolved 50+ critical production issues monthly for NBC Sports’ SportsEngine platform serving 35M youth athletes.</li>
+            <li>Modernized legacy systems at Novu/Icario, delivering 15+ stalled features and reducing the technical debt backlog by 40%.</li>
+            <li>Coordinated 24-hour development cycles across teams in the USA, India, Macedonia, and Uruguay, improving delivery speed by 35%.</li>
+            <li>Mentored developers in Ruby best practices, TDD, and code reviews, establishing shared coding standards adopted across every project.</li>
+          </ul>
+        </div>
+
+        <div class="space-y-3 border border-neutral-200 dark:border-neutral-800 rounded-lg p-4 bg-neutral-50 dark:bg-neutral-800/60">
+          <div class="flex flex-wrap justify-between gap-2">
+            <p class="font-semibold text-neutral-900 dark:text-neutral-50">Founder & Lead Engineer · Qaplus</p>
+            <p class="text-sm text-neutral-600 dark:text-neutral-400">07/2016 – 12/2019 · Montevideo</p>
+          </div>
+          <ul class="list-disc pl-5 space-y-2 text-neutral-700 dark:text-neutral-300">
+            <li>Founded and prototyped an automated QA SaaS platform, iterating from concept to MVP in six months.</li>
+            <li>Designed UX and implemented a Ruby on Rails, Sinatra, and PostgreSQL stack with a companion Chrome extension and CircleCI automation.</li>
+            <li>Pitched to 10+ investors and accelerators, earning acceptance into the Sinergia incubator program.</li>
+            <li>Built a Ruby service to generate automated tests from captured flows, running continuously in CircleCI.</li>
+            <li>Tech stack: Ruby on Rails, Sinatra, RSpec, Capybara, HAML, PostgreSQL, Redis, Sidekiq, Heroku, CircleCI, Bootstrap, Stripe API, Chrome Extensions.</li>
+          </ul>
+        </div>
+
+        <div class="space-y-3 border border-neutral-200 dark:border-neutral-800 rounded-lg p-4 bg-neutral-50 dark:bg-neutral-800/60">
+          <div class="flex flex-wrap justify-between gap-2">
+            <p class="font-semibold text-neutral-900 dark:text-neutral-50">Engineer (Junior → Senior) · Crea, Takeoff, BlooSee, Pyxis, Vairix</p>
+            <p class="text-sm text-neutral-600 dark:text-neutral-400">02/2008 – 07/2013 · Montevideo</p>
+          </div>
+          <ul class="list-disc pl-5 space-y-2 text-neutral-700 dark:text-neutral-300">
+            <li>Progressed from junior to senior developer across five companies while delivering products in telecom, sports media, social networks, and custom software.</li>
+            <li>Led development of the DirecTV Sports portal serving over two million monthly users across South America.</li>
+            <li>Built solutions using PHP, Ruby on Rails, Python/Django, Java EE, Android, and .NET.</li>
+          </ul>
         </div>
       </div>
-      
-      <div class="mt-8 pt-8 border-t border-slate-200 dark:border-slate-700">
-        <h2 class="text-2xl font-semibold text-slate-900 dark:text-white mb-6">Your Posts</h2>
-        <% user_posts = Post.where(user: current_user).order(created_at: :desc) %>
-        <% if user_posts.any? %>
-          <div class="space-y-4">
-            <% user_posts.each do |post| %>
-              <div class="flex justify-between items-center py-4 px-4 bg-slate-50 dark:bg-slate-900 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-                <div class="flex-1">
-                  <%= link_to post.title, post, class: "text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors" %>
-                  <div class="flex items-center gap-2 mt-1">
-                    <span class="text-xs px-2 py-1 rounded <%= post.published? ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300' : 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300' %>">
-                      <%= post.published? ? "Published" : "Draft" %>
-                    </span>
-                    <% if post.published_at %>
-                      <span class="text-xs text-slate-500 dark:text-slate-400">
-                        <%= post.published_at.strftime("%b %d, %Y") %>
-                      </span>
-                    <% end %>
-                  </div>
-                </div>
-                <%= link_to "Edit", edit_post_path(post), class: "text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors" %>
-              </div>
-            <% end %>
-          </div>
-        <% else %>
-          <p class="text-slate-500 dark:text-slate-400 mb-4">You haven't created any posts yet.</p>
-          <%= link_to "Create your first post", new_post_path, class: "inline-block rounded-md px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-medium transition-colors" %>
-        <% end %>
+
+      <div class="space-y-6">
+        <h3 class="text-xl font-semibold text-neutral-900 dark:text-neutral-50">Skills Snapshot</h3>
+        <div class="grid md:grid-cols-3 gap-4 text-neutral-700 dark:text-neutral-300">
+          <ul class="space-y-2">
+            <li>Ruby</li>
+            <li>Ruby on Rails</li>
+            <li>Python</li>
+            <li>Django</li>
+            <li>JavaScript / TypeScript</li>
+            <li>React</li>
+            <li>Angular</li>
+            <li>Vue</li>
+          </ul>
+          <ul class="space-y-2">
+            <li>Tailwind CSS & SCSS</li>
+            <li>Stimulus, Slim, HAML</li>
+            <li>RSpec, Capybara, TDD</li>
+            <li>Redis & Sidekiq</li>
+            <li>PostgreSQL & MySQL</li>
+            <li>CircleCI & GitHub Actions</li>
+            <li>Docker & Kubernetes</li>
+            <li>System Design</li>
+          </ul>
+          <ul class="space-y-2">
+            <li>AWS & GCP</li>
+            <li>S3</li>
+            <li>Elasticsearch</li>
+            <li>Git, GitHub, GitLab</li>
+            <li>Claude Code</li>
+            <li>GitHub Copilot</li>
+            <li>Team Mentoring</li>
+            <li>Agile Delivery</li>
+          </ul>
+        </div>
       </div>
-    </div>
-  <% else %>
-    <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-8 text-center">
-      <p class="text-slate-500 dark:text-slate-400 mb-4">Please sign in to view your profile.</p>
-      <%= link_to "Sign In", new_user_session_path, class: "inline-block rounded-md px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-medium transition-colors" %>
-    </div>
-  <% end %>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="space-y-3">
+          <h3 class="text-xl font-semibold text-neutral-900 dark:text-neutral-50">Volunteering</h3>
+          <div class="border border-neutral-200 dark:border-neutral-800 rounded-lg p-4 bg-neutral-50 dark:bg-neutral-800/60">
+            <p class="font-medium text-neutral-900 dark:text-neutral-50">Mentor · Firehouse Project</p>
+            <p class="text-sm text-neutral-600 dark:text-neutral-400">11/2018 – 06/2019 · Remote</p>
+            <p class="text-neutral-700 dark:text-neutral-300 mt-2">Conducted one-on-one remote mentorship teaching full-stack Ruby on Rails development to emerging engineers.</p>
+          </div>
+        </div>
+
+        <div class="space-y-3">
+          <h3 class="text-xl font-semibold text-neutral-900 dark:text-neutral-50">Languages</h3>
+          <ul class="space-y-2 text-neutral-700 dark:text-neutral-300">
+            <li><span class="font-medium text-neutral-900 dark:text-neutral-50">Spanish:</span> Native</li>
+            <li><span class="font-medium text-neutral-900 dark:text-neutral-50">English:</span> Proficient</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
 </div>
